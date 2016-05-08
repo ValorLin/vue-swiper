@@ -22,12 +22,7 @@ module.exports = {
     postcss: [autoprefixer({browsers: ['last 2 versions', 'Android 2.3']})],
     babel: {
         "presets": ["es2015"]
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"'
-        })
-    ]
+    }
 };
 
 if (process.env.NODE_ENV === 'dev') {
