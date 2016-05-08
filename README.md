@@ -20,3 +20,23 @@ new Vue({
     <div>Page 2</div>
 </swiper>
 ```
+
+## Api
+### Properties
+
+#### performace-mode `Boolean`
+
+Disable advance effect for better performance, defaults to `false`.
+
+### Methods
+#### next()
+Go next page.
+
+#### prev()
+Go previous page.
+
+#### setPage(`Number`)
+Set current page number.
+
+### Events
+// TODO
