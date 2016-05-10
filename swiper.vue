@@ -52,6 +52,8 @@
                     this.next();
                 } else if (this.deltaY > 100 || (isQuickAction && this.deltaY > 15)) {
                     this.prev();
+                } else {
+                    this.revert();
                 }
             },
             next() {
@@ -63,6 +65,9 @@
                 var page = this.currentPage;
                 if (this.currentPage > 1) page--;
                 this.setPage(page);
+            },
+            revert() {
+                this.setPage(this.currentPage);
             },
             setPage(page) {
                 this.currentPage = page;

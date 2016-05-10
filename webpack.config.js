@@ -9,7 +9,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '/',
-        libraryTarget:'umd',
+        libraryTarget: 'umd',
         filename: "[name].js"
     },
     module: {
@@ -22,7 +22,8 @@ module.exports = {
     postcss: [autoprefixer({browsers: ['last 2 versions', 'Android 2.3']})],
     babel: {
         "presets": ["es2015"]
-    }
+    },
+    plugins: []
 };
 
 if (process.env.NODE_ENV === 'dev') {
