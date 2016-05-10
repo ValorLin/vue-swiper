@@ -8,10 +8,10 @@ npm i vue-swiper -S
 
 ## Usage
 ```js
-import VueSwiper from 'vue-swiper'
+import Swiper from 'vue-swiper'
 new Vue({
     el: 'body',
-    components: {VueSwiper}
+    components: {Swiper}
 });
 ```
 ```html
