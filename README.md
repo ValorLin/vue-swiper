@@ -26,6 +26,7 @@ new Vue({
 
 ```html
 <swiper v-ref:swiper
+        direction="horizontal"
         :performance-mode="true"
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd">
@@ -37,8 +38,10 @@ new Vue({
 ## Api
 ### Properties
 
-#### performace-mode `Boolean`
+#### direction `String`	
+Could be 'horizontal' or 'vertical' (for vertical slider).
 
+#### performace-mode `Boolean`
 Disable advance effect for better performance, defaults to `false`.
 
 ### Methods

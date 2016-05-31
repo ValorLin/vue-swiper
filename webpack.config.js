@@ -16,7 +16,7 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.js$/, loaders: ['babel'], exclude: [/node_modules/]},
+            {test: /\.js$/, loader: 'babel', exclude: /node_modules/},
             {test: /\.vue$/, loader: 'vue'},
             {test: /\.less$/, loader: "css?sourceMap!postcss!less?sourceMap"}
         ]

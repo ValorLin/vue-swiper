@@ -1,9 +1,9 @@
 <template>
-    <div class="swiper">
+    <div class="swiper"
+         :class="[direction, {'dragging': dragging}]">
         <div class="swiper-wrap"
              v-el:swiper-wrap
-             :class="{ 'dragging': dragging }"
-             :style="{transform: 'translateY(' + translateY + 'px)'}"
+             :style="{'transform' : 'translate3d(' + translateX + 'px,' + translateY + 'px, 0)'}"
              @touchstart="_onTouchStart"
              @mousedown="_onTouchStart"
              @transitionend="_onTransitionEnd">
@@ -15,16 +15,30 @@
 <script type="text/babel">
     export default {
         props: {
-            performanceMode: false
+            direction: {
+                type: String,
+                default: 'vertical',
+                validator: (value) => ['vertical', 'horizontal'].indexOf(value) > -1
+            },
+            performanceMode: {
+                type: Boolean,
+                default: false
+            }
         },
         data() {
             return {
                 currentPage: 1,
                 lastPage: 1,
-                childrenCount: null,
+                translateX: 0,
                 translateY: 0,
+                startTranslateX: 0,
+                startTranslateY: 0,
+                width: 0,
                 height: 0,
-                dragging: false
+                delta: 0,
+                childrenCount: null,
+                dragging: false,
+                startPos: null
             };
         },
         ready() {
@@ -46,12 +60,26 @@
             setPage(page) {
                 this.lastPage = this.currentPage;
                 this.currentPage = page;
-                this.translateY = -(this.currentPage - 1) * this.height;
+                var n = -(this.currentPage - 1);
+                if (this.isHorizontal()) {
+                    this.translateX = n * this.width;
+                } else {
+                    this.translateY = n * this.height;
+                }
                 this._onTransitionStart();
             },
+            isVertical() {
+                return this.direction === 'vertical';
+            },
+            isHorizontal() {
+                return this.direction === 'horizontal';
+            },
             _onTouchStart(e) {
-                this.startY = this._getPageY(e);
+                this.startPos = this._getTouchPos(e);
+                this.delta = 0;
+                this.width = this.$el.clientWidth;
                 this.height = this.$el.clientHeight;
+                this.startTranslateX = this.translateX;
                 this.startTranslateY = this.translateY;
                 this.startTime = new Date().getTime();
                 this.dragging = true;
@@ -61,18 +89,22 @@
                 document.addEventListener('mouseup', this._onTouchEnd);
             },
             _onTouchMove(e) {
-                this.deltaY = this._getPageY(e) - this.startY;
+                this.delta = this._getTouchPos(e) - this.startPos;
 
                 if (!this.performanceMode) {
-                    this.translateY = this.startTranslateY + this.deltaY;
+                    if (this.isHorizontal()) {
+                        this.translateX = this.startTranslateX + this.delta;
+                    } else {
+                        this.translateY = this.startTranslateY + this.delta;
+                    }
                 }
             },
             _onTouchEnd(e) {
                 this.dragging = false;
                 var isQuickAction = new Date().getTime() - this.startTime < 1000;
-                if (this.deltaY < -100 || (isQuickAction && this.deltaY < -15)) {
+                if (this.delta < -100 || (isQuickAction && this.delta < -15)) {
                     this.next();
-                } else if (this.deltaY > 100 || (isQuickAction && this.deltaY > 15)) {
+                } else if (this.delta > 100 || (isQuickAction && this.delta > 15)) {
                     this.prev();
                 } else {
                     this._revert();
@@ -86,8 +118,9 @@
             _revert() {
                 this.setPage(this.currentPage);
             },
-            _getPageY(e) {
-                return e.changedTouches ? e.changedTouches[0].pageY : e.pageY;
+            _getTouchPos(e) {
+                var key = this.isHorizontal() ? 'pageX' : 'pageY';
+                return e.changedTouches ? e.changedTouches[0][key] : e[key];
             },
             _onTransitionStart() {
                 if (this.lastPage !== this.currentPage) {

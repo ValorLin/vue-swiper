@@ -2,16 +2,29 @@
   overflow: hidden;
 
   .swiper-wrap {
-    transition: all 0.5s ease;
+    display: flex;
+    width: 100%;
     height: 100%;
-
-    &.dragging {
-      transition: none;
-    }
+    transition: all 0.5s ease;
 
     > div {
       overflow: hidden;
+      min-width: 100%;
+      min-height: 100%;
+      width: 100%;
       height: 100%;
     }
+  }
+
+  &.horizontal .swiper-wrap {
+    flex-direction: row;
+  }
+
+  &.vertical .swiper-wrap {
+    flex-direction: column;
+  }
+
+  &.dragging .swiper-wrap {
+    transition: none;
   }
 }
