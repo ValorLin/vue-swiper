@@ -28,11 +28,12 @@ new Vue({
 ```html
 <swiper v-ref:swiper
         direction="horizontal"
-        :performance-mode="true"
+        :performance-mode="false"
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd">
     <div>Page 1</div>
     <div>Page 2</div>
+    <div>Page 3</div>
 </swiper>
 ```
 
