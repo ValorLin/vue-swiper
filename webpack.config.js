@@ -30,5 +30,5 @@ module.exports = {
 if (process.env.NODE_ENV === 'dev') {
     module.exports.devtool = '#eval-source-map';
 } else {
-    // module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin())
+    module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin())
 }
