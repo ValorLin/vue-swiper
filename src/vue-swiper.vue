@@ -1,10 +1,11 @@
 <template>
     <div class="swiper">
-        <div class="swiper-wrap"
+        <div class="swiper-wrap" v-el:swiper-wrap
              :class="{ 'dragging': dragging }"
              :style="{transform: 'translateY(' + translateY + 'px)'}"
              @touchstart="onTouchStart"
-             @mousedown="onTouchStart">
+             @mousedown="onTouchStart"
+             @transitionend="_onTransitionEnd">
             <slot></slot>
         </div>
     </div>
@@ -18,6 +19,7 @@
         data() {
             return {
                 currentPage: 1,
+                lastPage: 1,
                 childrenCount: null,
                 translateY: 0,
                 height: 0,
@@ -78,11 +80,23 @@
                 this.setPage(this.currentPage);
             },
             setPage(page) {
+                this.lastPage = this.currentPage;
                 this.currentPage = page;
                 this.translateY = -(this.currentPage - 1) * this.height;
+                this._onTransitionStart();
             },
             getPageY(e) {
                 return e.changedTouches ? e.changedTouches[0].pageY : e.pageY;
+            },
+            _onTransitionStart() {
+                if (this.lastPage !== this.currentPage) {
+                    this.$emit('slide-change-start', this.currentPage);
+                }
+            },
+            _onTransitionEnd() {
+                if (this.lastPage !== this.currentPage) {
+                    this.$emit('slide-change-end', this.currentPage);
+                }
             }
         }
     };

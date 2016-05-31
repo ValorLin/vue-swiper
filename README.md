@@ -12,12 +12,23 @@ npm i vue-swiper -S
 import Swiper from 'vue-swiper'
 new Vue({
     el: 'body',
-    components: {Swiper}
+    components: {Swiper},
+    methods: {
+        onSlideChangeStart (currentPage) {
+            console.log('onSlideChangeStart', currentPage);
+        },
+        onSlideChangeEnd (currentPage) {
+            console.log('onSlideChangeEnd', currentPage);
+        }
+    }
 });
 ```
 
 ```html
-<swiper v-ref:swiper :performance-mode="true">
+<swiper v-ref:swiper
+		 :performance-mode="true"
+        @slide-change-start="onSlideChangeStart"
+        @slide-change-end="onSlideChangeEnd">
     <div>Page 1</div>
     <div>Page 2</div>
 </swiper>
@@ -41,4 +52,8 @@ Go previous page.
 Set current page number.
 
 ### Events
-// TODO
+#### slide-change-start
+Fire in the beginning of animation to other slide (next or previous).
+ 
+#### slide-change-end
+Will be fired after animation to other slide (next or previous).

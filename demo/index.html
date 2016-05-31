@@ -41,7 +41,9 @@
     </style>
 </head>
 <body v-cloak>
-<swiper id="swiper_demo">
+<swiper id="swiper_demo"
+        @slide-change-start="onSlideChangeStart"
+        @slide-change-end="onSlideChangeEnd">
     <div class="slide-1">1</div>
     <div class="slide-2">2</div>
     <div class="slide-3">3</div>
@@ -49,10 +51,18 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
 <script src="../dist/vue-swiper.js"></script>
 <script>
-    new Vue({
-        el: 'body',
-        components: {swiper: VueSwiper}
-    });
+new Vue({
+    el: 'body',
+    components: {swiper: VueSwiper},
+    methods: {
+        onSlideChangeStart: function (currentPage) {
+            console.log('onSlideChangeStart', currentPage);
+        },
+        onSlideChangeEnd: function (currentPage) {
+            console.log('onSlideChangeEnd', currentPage);
+        }
+    }
+});
 </script>
 </body>
 </html>
