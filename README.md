@@ -1,6 +1,6 @@
 # vue-swiper
 Swiper component. Easy to use.
-[DEMO](http://weilao.github.io/vue-swiper/demo)
+## [DEMO](http://weilao.github.io/vue-swiper/demo)
 ## Install
 ```
 npm i vue-swiper -S
