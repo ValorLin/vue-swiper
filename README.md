@@ -26,7 +26,7 @@ new Vue({
 
 ```html
 <swiper v-ref:swiper
-		 :performance-mode="true"
+        :performance-mode="true"
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd">
     <div>Page 1</div>

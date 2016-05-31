@@ -1,6 +1,6 @@
 {
   "name": "vue-swiper",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "main": "dist/vue-swiper.js",
   "scripts": {
     "dev": "NODE_ENV=dev webpack-dev-server --inline --hot --host 0.0.0.0 --config webpack.config.js"
