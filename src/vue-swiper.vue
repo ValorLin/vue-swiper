@@ -3,7 +3,8 @@
         <div class="swiper-wrap"
              :class="{ 'dragging': dragging }"
              :style="{transform: 'translateY(' + translateY + 'px)'}"
-             @touchstart="onTouchStart">
+             @touchstart="onTouchStart"
+             @mousedown="onTouchStart">
             <slot></slot>
         </div>
     </div>
@@ -31,15 +32,17 @@
         },
         methods: {
             onTouchStart(e) {
-                this.startY = e.touches[0].pageY;
+                this.startY = this.getPageY(e);
                 this.startTranslateY = this.translateY;
                 this.startTime = new Date().getTime();
                 this.dragging = true;
                 document.addEventListener('touchmove', this.onTouchMove);
                 document.addEventListener('touchend', this.onTouchEnd);
+                document.addEventListener('mousemove', this.onTouchMove);
+                document.addEventListener('mouseup', this.onTouchEnd);
             },
             onTouchMove(e) {
-                this.deltaY = e.touches[0].pageY - this.startY;
+                this.deltaY = this.getPageY(e) - this.startY;
 
                 if (!this.performanceMode) {
                     this.translateY = this.startTranslateY + this.deltaY;
@@ -55,6 +58,11 @@
                 } else {
                     this.revert();
                 }
+
+                document.removeEventListener('touchmove', this.onTouchMove);
+                document.removeEventListener('touchend', this.onTouchEnd);
+                document.removeEventListener('mousemove', this.onTouchMove);
+                document.removeEventListener('mouseup', this.onTouchEnd);
             },
             next() {
                 var page = this.currentPage;
@@ -72,6 +80,9 @@
             setPage(page) {
                 this.currentPage = page;
                 this.translateY = -(this.currentPage - 1) * this.height;
+            },
+            getPageY(e) {
+                return e.changedTouches ? e.changedTouches[0].pageY : e.pageY;
             }
         }
     };
