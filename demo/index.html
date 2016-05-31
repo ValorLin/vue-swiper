@@ -6,6 +6,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <style>
+        [v-cloak] {
+            display: none;
+        }
+
         html, body {
             margin: 0;
             height: 100%;
@@ -36,7 +40,7 @@
         }
     </style>
 </head>
-<body>
+<body v-cloak>
 <swiper id="swiper_demo">
     <div class="slide-1">1</div>
     <div class="slide-2">2</div>

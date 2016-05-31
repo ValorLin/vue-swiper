@@ -28,11 +28,11 @@
             this.onTouchMove = this.onTouchMove.bind(this);
             this.onTouchEnd = this.onTouchEnd.bind(this);
             this.childrenCount = this.$el.querySelectorAll('.swiper-wrap>div').length;
-            this.height = this.$el.clientHeight;
         },
         methods: {
             onTouchStart(e) {
                 this.startY = this.getPageY(e);
+                this.height = this.$el.clientHeight;
                 this.startTranslateY = this.translateY;
                 this.startTime = new Date().getTime();
                 this.dragging = true;
