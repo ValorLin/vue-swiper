@@ -1,5 +1,5 @@
 /*!
- * vue-swiper v0.1.0
+ * vue-swiper v0.2.0
  * Swiper component. Easy to use.
  * https://github.com/weilao/vue-swiper
  * @author weilao
