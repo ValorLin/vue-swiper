@@ -13,12 +13,15 @@
 </template>
 <style lang="less" src="./vue-swiper.less"></style>
 <script type="text/babel">
+    const VERTICAL = 'vertical';
+    const HORIZONTAL = 'horizontal';
+
     export default {
         props: {
             direction: {
                 type: String,
-                default: 'vertical',
-                validator: (value) => ['vertical', 'horizontal'].indexOf(value) > -1
+                default: VERTICAL,
+                validator: (value) => [VERTICAL, HORIZONTAL].indexOf(value) > -1
             },
             performanceMode: {
                 type: Boolean,
@@ -68,11 +71,11 @@
                 }
                 this._onTransitionStart();
             },
-            isVertical() {
-                return this.direction === 'vertical';
-            },
             isHorizontal() {
-                return this.direction === 'horizontal';
+                return this.direction === HORIZONTAL;
+            },
+            isVertical() {
+                return this.direction === VERTICAL;
             },
             _onTouchStart(e) {
                 this.startPos = this._getTouchPos(e);
