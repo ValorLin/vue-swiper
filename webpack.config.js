@@ -1,7 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-
+var pkg = require('./package.json');
+var banner = `${pkg.name} v${pkg.version}\n${pkg.description}\n${pkg.homepage}\n@author ${pkg.author}`;
 module.exports = {
     entry: {
         'vue-swiper': path.join(__dirname, 'src/vue-swiper.vue')
@@ -30,5 +31,6 @@ module.exports = {
 if (process.env.NODE_ENV === 'dev') {
     module.exports.devtool = '#eval-source-map';
 } else {
-    module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin())
+    module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin());
+    module.exports.plugins.push(new webpack.BannerPlugin(banner));
 }

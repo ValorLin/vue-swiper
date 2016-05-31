@@ -1,6 +1,17 @@
 {
   "name": "vue-swiper",
   "version": "0.1.0",
+  "description": "Swiper component. Easy to use.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weilao/vue-swiper.git"
+  },
+  "author": "weilao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/weilao/vue-swiper/issues"
+  },
+  "homepage": "https://github.com/weilao/vue-swiper",
   "main": "dist/vue-swiper.js",
   "scripts": {
     "dev": "NODE_ENV=dev webpack-dev-server --inline --hot --host 0.0.0.0 --config webpack.config.js"
