@@ -4,11 +4,12 @@ var autoprefixer = require('autoprefixer');
 
 module.exports = {
     entry: {
-        'swiper': path.join(__dirname, 'swiper.vue')
+        'vue-swiper': path.join(__dirname, 'src/vue-swiper.vue')
     },
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '/',
+        library: 'VueSwiper',
         libraryTarget: 'umd',
         filename: "[name].js"
     },

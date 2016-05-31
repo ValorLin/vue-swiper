@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-swiper DEMO</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+        #swiper_demo {
+            height: 100%;
+        }
+
+        #swiper_demo .swiper-wrap > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 128px;
+            color: #fff;
+        }
+
+        #swiper_demo .slide-1 {
+            background-color: skyblue;
+        }
+
+        #swiper_demo .slide-2 {
+            background-color: yellowgreen;
+        }
+
+        #swiper_demo .slide-3 {
+            background-color: rosybrown;
+        }
+    </style>
+</head>
+<body>
+<swiper id="swiper_demo">
+    <div class="slide-1">1</div>
+    <div class="slide-2">2</div>
+    <div class="slide-3">3</div>
+</swiper>
+<script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+<script src="../dist/vue-swiper.js"></script>
+<script>
+    new Vue({
+        el: 'body',
+        components: {swiper: VueSwiper}
+    });
+</script>
+</body>
+</html>

@@ -1,12 +1,13 @@
 # vue-swiper
 Swiper component. Easy to use.
-
+[DEMO](http://weilao.github.io/vue-swiper/demo)
 ## Install
 ```
 npm i vue-swiper -S
 ```
 
 ## Usage
+
 ```js
 import Swiper from 'vue-swiper'
 new Vue({
@@ -14,6 +15,7 @@ new Vue({
     components: {Swiper}
 });
 ```
+
 ```html
 <swiper v-ref:swiper :performance-mode="true">
     <div>Page 1</div>

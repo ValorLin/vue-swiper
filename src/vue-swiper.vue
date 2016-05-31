@@ -8,9 +8,9 @@
         </div>
     </div>
 </template>
-<style lang="less" src="./swiper.less"></style>
+<style lang="less" src="./vue-swiper.less"></style>
 <script type="text/babel">
-    export default{
+    export default {
         props: {
             performanceMode: false
         },
