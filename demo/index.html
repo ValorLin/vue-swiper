@@ -12,8 +12,6 @@
 
         html, body {
             margin: 0;
-            height: 100%;
-            overflow: hidden;
         }
 
         h2, h3 {
@@ -45,6 +43,12 @@
         .slide-3 {
             background-color: rosybrown;
         }
+
+        .swiper-nested-inner {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body v-cloak>
@@ -71,7 +75,7 @@
         <!--@slide-change-start="onSlideChangeStart"-->
         <!--@slide-change-end="onSlideChangeEnd">-->
     <!--<div class="slide-1">-->
-        <!--<swiper class="swiper-nested-inner" -->
+        <!--<swiper class="swiper-nested-inner"-->
                 <!--direction="vertical">-->
             <!--<div class="slide-1">1-1</div>-->
             <!--<div class="slide-2">1-2</div>-->
@@ -79,7 +83,7 @@
         <!--</swiper>-->
     <!--</div>-->
     <!--<div class="slide-2">-->
-        <!--<swiper class="swiper-nested-inner" -->
+        <!--<swiper class="swiper-nested-inner"-->
                 <!--direction="vertical">-->
             <!--<div class="slide-1">2-1</div>-->
             <!--<div class="slide-2">2-2</div>-->

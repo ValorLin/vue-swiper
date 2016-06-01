@@ -52,12 +52,12 @@
         methods: {
             next() {
                 var page = this.currentPage;
-                if (this.currentPage < this.childrenCount) page++;
+                if (page < this.childrenCount) page++;
                 this.setPage(page);
             },
             prev() {
                 var page = this.currentPage;
-                if (this.currentPage > 1) page--;
+                if (page > 1) page--;
                 this.setPage(page);
             },
             setPage(page) {
@@ -86,10 +86,10 @@
                 this.startTranslateY = this.translateY;
                 this.startTime = new Date().getTime();
                 this.dragging = true;
-                document.addEventListener('touchmove', this._onTouchMove);
-                document.addEventListener('touchend', this._onTouchEnd);
-                document.addEventListener('mousemove', this._onTouchMove);
-                document.addEventListener('mouseup', this._onTouchEnd);
+                document.addEventListener('touchmove', this._onTouchMove, false);
+                document.addEventListener('touchend', this._onTouchEnd, false);
+                document.addEventListener('mousemove', this._onTouchMove, false);
+                document.addEventListener('mouseup', this._onTouchEnd, false);
             },
             _onTouchMove(e) {
                 this.delta = this._getTouchPos(e) - this.startPos;
@@ -100,6 +100,10 @@
                     } else {
                         this.translateY = this.startTranslateY + this.delta;
                     }
+                }
+
+                if (this.isVertical() || this.isHorizontal() && Math.abs(this.delta) > 0) {
+                    e.preventDefault();
                 }
             },
             _onTouchEnd(e) {
