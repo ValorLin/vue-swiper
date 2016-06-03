@@ -41,10 +41,10 @@ new Vue({
 ### Properties
 
 #### direction `String`	
-Could be 'horizontal' or 'vertical' (for vertical slider).
+Could be 'horizontal' or 'vertical' (for vertical slider). Defaults to `“vertical”`.
 
 #### performace-mode `Boolean`
-Disable advance effect for better performance, defaults to `false`.
+Disable advance effect for better performance. Defaults to `false`.
 
 ### Methods
 #### next()
