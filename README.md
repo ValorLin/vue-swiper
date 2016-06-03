@@ -1,6 +1,10 @@
 # vue-swiper
 Swiper component. Easy to use.
-## [DEMO](http://weilao.github.io/vue-swiper/demo)
+
+## Examples
+[basic demo](http://weilao.github.io/vue-swiper/demo)
+[webpack ES2015 demo](http://www.webpackbin.com/4kbKGs97b)
+
 ## Install
 ```
 npm i vue-swiper -S
@@ -9,6 +13,7 @@ npm i vue-swiper -S
 ## Usage
 
 ```js
+import Vue from 'vue'
 import Swiper from 'vue-swiper'
 
 new Vue({
