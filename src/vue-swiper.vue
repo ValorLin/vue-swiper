@@ -1,4 +1,4 @@
-<template xmlns:v-el="http://www.w3.org/1999/xhtml">
+<template>
     <div class="swiper"
          :class="[direction, {'dragging': dragging}]"
          @touchstart="_onTouchStart"
