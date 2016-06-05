@@ -1,8 +1,9 @@
-<template>
+<template xmlns:v-el="http://www.w3.org/1999/xhtml">
     <div class="swiper"
          :class="[direction, {'dragging': dragging}]"
          @touchstart="_onTouchStart"
-         @mousedown="_onTouchStart">
+         @mousedown="_onTouchStart"
+         @wheel="_onWheel">
         <div class="swiper-wrap"
              v-el:swiper-wrap
              :style="{'transform' : 'translate3d(' + translateX + 'px,' + translateY + 'px, 0)'}"
@@ -23,6 +24,10 @@
                 default: VERTICAL,
                 validator: (value) => [VERTICAL, HORIZONTAL].indexOf(value) > -1
             },
+            mousewheelControl: {
+                type: Boolean,
+                default: true
+            },
             performanceMode: {
                 type: Boolean,
                 default: false
@@ -39,7 +44,8 @@
                 delta: 0,
                 slideCount: null,
                 dragging: false,
-                startPos: null
+                startPos: null,
+                transitioning: false
             };
         },
         ready() {
@@ -126,6 +132,21 @@
                 document.removeEventListener('mousemove', this._onTouchMove);
                 document.removeEventListener('mouseup', this._onTouchEnd);
             },
+            _onWheel(e) {
+                if (this.mousewheelControl) {
+                    // TODO Support apple magic mouse and trackpad.
+                    if (!this.transitioning) {
+                        if (e.deltaY > 0) {
+                            this.next();
+                        } else {
+                            this.prev();
+                        }
+                    }
+
+                    if (this._isPageChanged()) e.preventDefault();
+
+                }
+            },
             _revert() {
                 this.setPage(this.currentPage);
             },
@@ -134,14 +155,19 @@
                 return e.changedTouches ? e.changedTouches[0][key] : e[key];
             },
             _onTransitionStart() {
-                if (this.lastPage !== this.currentPage) {
+                if (this._isPageChanged()) {
+                    this.transitioning = true;
                     this.$emit('slide-change-start', this.currentPage);
                 }
             },
             _onTransitionEnd() {
-                if (this.lastPage !== this.currentPage) {
+                if (this._isPageChanged()) {
+                    this.transitioning = false;
                     this.$emit('slide-change-end', this.currentPage);
                 }
+            },
+            _isPageChanged() {
+                return this.lastPage !== this.currentPage;
             }
         }
     };
