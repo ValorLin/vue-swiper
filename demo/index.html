@@ -44,6 +44,30 @@
             background-color: rosybrown;
         }
 
+        .slide-4 {
+            background-color: skyblue;
+        }
+
+        #swiper_children_size {
+            height: 400px;
+        }
+
+        #swiper_children_size .slide-1 {
+            height: 200px;
+        }
+
+        #swiper_children_size .slide-2 {
+            height: 150px;
+        }
+
+        #swiper_children_size .slide-3 {
+            height: 100px;
+        }
+
+        #swiper_children_size .slide-4 {
+            height: 350px;
+        }
+
         .swiper-nested-inner {
             width: 100%;
             height: 100%;
@@ -58,46 +82,49 @@
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd">
     <div class="slide-1">↑<br>o<br>↓</div>
-    <div class="slide-2">Page 2</div>
-    <div class="slide-3">Page 3</div>
+    <div v-for="n in [2,3]" class="slide-{{n}}">Page {{n}}</div>
 </swiper>
 <h3>Horizontal</h3>
 <swiper id="swiper_horizontal"
         direction="horizontal">
     <div class="slide-1">← o →</div>
-    <div class="slide-2">Page 2</div>
-    <div class="slide-3">Page 3</div>
+    <div v-for="n in [2,3]" class="slide-{{n}}">Page {{n}}</div>
+</swiper>
+<h3>Different children size</h3>
+<swiper id="swiper_children_size">
+    <div class="slide-1">↑<br>o<br>↓</div>
+    <div v-for="n in [2,3,4]" class="slide-{{n}}">Page {{n}}</div>
 </swiper>
 <!-- Nested swiper no supported yet-->
 <!--<h3>Nested</h3>-->
 <!--<swiper id="swiper_nested"-->
-        <!--direction="horizontal"-->
-        <!--@slide-change-start="onSlideChangeStart"-->
-        <!--@slide-change-end="onSlideChangeEnd">-->
-    <!--<div class="slide-1">-->
-        <!--<swiper class="swiper-nested-inner"-->
-                <!--direction="vertical">-->
-            <!--<div class="slide-1">1-1</div>-->
-            <!--<div class="slide-2">1-2</div>-->
-            <!--<div class="slide-3">1-3</div>-->
-        <!--</swiper>-->
-    <!--</div>-->
-    <!--<div class="slide-2">-->
-        <!--<swiper class="swiper-nested-inner"-->
-                <!--direction="vertical">-->
-            <!--<div class="slide-1">2-1</div>-->
-            <!--<div class="slide-2">2-2</div>-->
-            <!--<div class="slide-3">2-3</div>-->
-        <!--</swiper>-->
-    <!--</div>-->
-    <!--<div class="slide-3">-->
-        <!--<swiper class="swiper-nested-inner"-->
-                <!--direction="vertical">-->
-            <!--<div class="slide-1">3-1</div>-->
-            <!--<div class="slide-2">3-2</div>-->
-            <!--<div class="slide-3">3-3</div>-->
-        <!--</swiper>-->
-    <!--</div>-->
+<!--direction="horizontal"-->
+<!--@slide-change-start="onSlideChangeStart"-->
+<!--@slide-change-end="onSlideChangeEnd">-->
+<!--<div class="slide-1">-->
+<!--<swiper class="swiper-nested-inner"-->
+<!--direction="vertical">-->
+<!--<div class="slide-1">1-1</div>-->
+<!--<div class="slide-2">1-2</div>-->
+<!--<div class="slide-3">1-3</div>-->
+<!--</swiper>-->
+<!--</div>-->
+<!--<div class="slide-2">-->
+<!--<swiper class="swiper-nested-inner"-->
+<!--direction="vertical">-->
+<!--<div class="slide-1">2-1</div>-->
+<!--<div class="slide-2">2-2</div>-->
+<!--<div class="slide-3">2-3</div>-->
+<!--</swiper>-->
+<!--</div>-->
+<!--<div class="slide-3">-->
+<!--<swiper class="swiper-nested-inner"-->
+<!--direction="vertical">-->
+<!--<div class="slide-1">3-1</div>-->
+<!--<div class="slide-2">3-2</div>-->
+<!--<div class="slide-3">3-3</div>-->
+<!--</swiper>-->
+<!--</div>-->
 <!--</swiper>-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
 <script src="../dist/vue-swiper.js"></script>

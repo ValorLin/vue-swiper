@@ -1,11 +1,11 @@
 <template>
     <div class="swiper"
-         :class="[direction, {'dragging': dragging}]">
+         :class="[direction, {'dragging': dragging}]"
+         @touchstart="_onTouchStart"
+         @mousedown="_onTouchStart">
         <div class="swiper-wrap"
              v-el:swiper-wrap
              :style="{'transform' : 'translate3d(' + translateX + 'px,' + translateY + 'px, 0)'}"
-             @touchstart="_onTouchStart"
-             @mousedown="_onTouchStart"
              @transitionend="_onTransitionEnd">
             <slot></slot>
         </div>
@@ -36,10 +36,8 @@
                 translateY: 0,
                 startTranslateX: 0,
                 startTranslateY: 0,
-                width: 0,
-                height: 0,
                 delta: 0,
-                childrenCount: null,
+                slideCount: null,
                 dragging: false,
                 startPos: null
             };
@@ -47,12 +45,13 @@
         ready() {
             this._onTouchMove = this._onTouchMove.bind(this);
             this._onTouchEnd = this._onTouchEnd.bind(this);
-            this.childrenCount = this.$el.querySelectorAll('.swiper-wrap>div').length;
+            this.slideEls = this.$els.swiperWrap.children;
+            this.slideCount = this.slideEls.length;
         },
         methods: {
             next() {
                 var page = this.currentPage;
-                if (page < this.childrenCount) page++;
+                if (page < this.slideCount) page++;
                 this.setPage(page);
             },
             prev() {
@@ -61,14 +60,20 @@
                 this.setPage(page);
             },
             setPage(page) {
+                var propName, translateName;
                 this.lastPage = this.currentPage;
                 this.currentPage = page;
-                var n = -(this.currentPage - 1);
+
                 if (this.isHorizontal()) {
-                    this.translateX = n * this.width;
+                    propName = 'clientWidth';
+                    translateName = 'translateX';
                 } else {
-                    this.translateY = n * this.height;
+                    propName = 'clientHeight';
+                    translateName = 'translateY';
                 }
+                this[translateName] = -[].reduce.call(this.slideEls, function (total, el, i) {
+                    return i > page - 2 ? total : total + el[propName];
+                }, 0);
                 this._onTransitionStart();
             },
             isHorizontal() {
@@ -80,12 +85,11 @@
             _onTouchStart(e) {
                 this.startPos = this._getTouchPos(e);
                 this.delta = 0;
-                this.width = this.$el.clientWidth;
-                this.height = this.$el.clientHeight;
                 this.startTranslateX = this.translateX;
                 this.startTranslateY = this.translateY;
                 this.startTime = new Date().getTime();
                 this.dragging = true;
+
                 document.addEventListener('touchmove', this._onTouchMove, false);
                 document.addEventListener('touchend', this._onTouchEnd, false);
                 document.addEventListener('mousemove', this._onTouchMove, false);
