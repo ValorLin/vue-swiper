@@ -35,6 +35,7 @@ new Vue({
 <swiper v-ref:swiper
         direction="horizontal"
         :performance-mode="false"
+        :mousewheel-control="true"
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd">
     <div>Page 1</div>
@@ -51,6 +52,9 @@ Could be 'horizontal' or 'vertical' (for vertical slider). Defaults to `“verti
 
 #### performace-mode `Boolean`
 Disable advance effect for better performance. Defaults to `false`.
+
+#### mousewheel-mode `Boolean`	
+Set to true to enable navigation through slides using mouse wheel. Defaults to `true`.
 
 ### Methods
 #### next()
