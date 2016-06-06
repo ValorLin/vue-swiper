@@ -1,3 +1,9 @@
+[![npm](https://img.shields.io/npm/l/vue-swiper.svg?maxAge=2592000)](https://raw.githubusercontent.com/weilao/vue-swiper/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/vue-swiper.svg?maxAge=2592000)](https://www.npmjs.com/package/vue-swiper)
+[![GitHub release](https://img.shields.io/github/release/weilao/vue-swiper.svg?maxAge=2592000)](https://github.com/weilao/vue-swiper/releases)
+[![GitHub issues](https://img.shields.io/github/issues/weilao/vue-swiper.svg?maxAge=2592000)](https://github.com/weilao/vue-swiper/issues)
+[![GitHub stars](https://img.shields.io/github/stars/weilao/vue-swiper.svg?style=social&label=Star&maxAge=2592000)]() 
+
 [![NPM](https://nodei.co/npm/vue-swiper.png?downloads=true&downloadRank=true)](https://nodei.co/npm/vue-swiper/)
 
 # vue-swiper
