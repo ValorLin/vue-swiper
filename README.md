@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/vue-swiper.png?downloads=true&downloadRank=true)](https://nodei.co/npm/vue-swiper/)
+
 # vue-swiper
 Swiper component. Easy to use.
 
