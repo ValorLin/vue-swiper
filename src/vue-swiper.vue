@@ -52,12 +52,11 @@
             this._onTouchMove = this._onTouchMove.bind(this);
             this._onTouchEnd = this._onTouchEnd.bind(this);
             this.slideEls = this.$els.swiperWrap.children;
-            this.slideCount = this.slideEls.length;
         },
         methods: {
             next() {
                 var page = this.currentPage;
-                if (page < this.slideCount) page++;
+                if (page < this.slideEls.length) page++;
                 this.setPage(page);
             },
             prev() {
