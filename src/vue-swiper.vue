@@ -42,7 +42,6 @@
                 startTranslateX: 0,
                 startTranslateY: 0,
                 delta: 0,
-                slideCount: null,
                 dragging: false,
                 startPos: null,
                 transitioning: false
