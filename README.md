@@ -58,7 +58,7 @@ new Vue({
 #### direction `String`	
 Could be 'horizontal' or 'vertical' (for vertical slider). Defaults to `“vertical”`.
 
-#### mousewheel-mode `Boolean`	
+#### mousewheel-control `Boolean`	
 Set to true to enable navigation through slides using mouse wheel. Defaults to `true`.
 
 #### performace-mode `Boolean`
