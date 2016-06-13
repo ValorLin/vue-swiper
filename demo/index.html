@@ -18,6 +18,34 @@
             text-align: center;
         }
 
+        button {
+            background-color: skyblue;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            border-radius: 0.3rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            outline: none;
+            appearance: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #fff;
+            color: #000;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #ddd;
+            color: #333;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            transform: scale(1);
+        }
+
         .swiper {
             height: 200px;
             margin-bottom: 80px;
@@ -32,20 +60,21 @@
             color: #fff;
         }
 
-        .slide-1 {
+        .swiper-wrap > div:nth-child(3n) {
             background-color: skyblue;
         }
 
-        .slide-2 {
+        .swiper-wrap > div:nth-child(3n + 1) {
             background-color: yellowgreen;
         }
 
-        .slide-3 {
+        .swiper-wrap > div:nth-child(3n + 2) {
             background-color: rosybrown;
         }
 
-        .slide-4 {
-            background-color: skyblue;
+        #append_child {
+            text-align: center;
+            margin-bottom: 80px;
         }
 
         #swiper_children_size {
@@ -73,6 +102,8 @@
             height: 100%;
             margin-bottom: 0;
         }
+
+
     </style>
 </head>
 <body v-cloak>
@@ -82,14 +113,17 @@
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd">
     <div class="slide-1">↑<br>o<br>↓</div>
-    <div v-for="n in [2,3]" class="slide-{{n}}">Page {{n}}</div>
+    <div v-for="n in [2,3]">Page {{n}}</div>
 </swiper>
 <h3>Horizontal</h3>
 <swiper id="swiper_horizontal"
         direction="horizontal">
-    <div class="slide-1">← o →</div>
-    <div v-for="n in [2,3]" class="slide-{{n}}">Page {{n}}</div>
+    <div v-for="slideText in slides" track-by="$index">{{slideText}}</div>
 </swiper>
+<h3>Append Child</h3>
+<div id="append_child">
+    <button @click="appendSlide('New Page!')">Append child to the horizontal slider</button>
+</div>
 <h3>Different children size</h3>
 <swiper id="swiper_children_size">
     <div class="slide-1">↑<br>o<br>↓</div>
@@ -132,12 +166,24 @@
     new Vue({
         el: 'body',
         components: {swiper: VueSwiper},
+        data: {
+            slides: ['← o →', 'Page 2', 'Page 3']
+        },
         methods: {
             onSlideChangeStart: function (currentPage) {
                 console.log('onSlideChangeStart', currentPage);
             },
             onSlideChangeEnd: function (currentPage) {
                 console.log('onSlideChangeEnd', currentPage);
+            },
+            prependSlide: function (slideText) {
+                this.slides.unshift(slideText);
+            },
+            appendSlide: function (slideText) {
+                this.slides.push(slideText);
+            },
+            removeSlide: function () {
+
             }
         }
     });
