@@ -26,4 +26,44 @@
   &.dragging .swiper-wrap {
     transition: none;
   }
+
+  .swiper-pagination {
+    position: absolute;
+
+    .swiper-pagination-bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #000000;
+      opacity: .2;
+      transition: all .5s ease;
+    }
+
+    .swiper-pagination-bullet.active {
+      background: #007aff;
+      opacity: 1;
+    }
+  }
+
+  &.vertical .swiper-pagination {
+    right: 10px;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+
+    .swiper-pagination-bullet {
+      display: block;
+      margin: 5px 0;
+    }
+  }
+
+  &.horizontal .swiper-pagination {
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+
+    .swiper-pagination-bullet {
+      display: inline-block;
+      margin: 0 5px;
+    }
+  }
 }

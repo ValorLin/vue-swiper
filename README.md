@@ -54,11 +54,13 @@ new Vue({
 
 ## Api
 ### Properties
-| Name               | Type      | Default      | Description                                                        |
-|--------------------|-----------|--------------|--------------------------------------------------------------------|
-| direction          | `String`  | `"vertical"` | Could be 'horizontal' or 'vertical' (for vertical slider).         |
-| mousewheel-control | `Boolean` | `true`       | Set to true to enable navigation through slides using mouse wheel. |
-| performace-mode    | `Boolean` | `false`      | Disable advance effect for better performance.                     |
+| Name                            | Type      | Default      | Description                                                        |
+|---------------------------------|-----------|--------------|--------------------------------------------------------------------|
+| direction                       | `String`  | `"vertical"` | Could be 'horizontal' or 'vertical' (for vertical slider).         |
+| <span>mousewheel-control</span> | `Boolean` | `true`       | Set to true to enable navigation through slides using mouse wheel. |
+| performace-mode                 | `Boolean` | `false`      | Disable advance effect for better performance.                     |
+| pagination-visible              | `Boolean` | `false`      | Toggle (hide/true) pagination container visibility when click on Slider's container |
+| pagination-clickable            | `Boolean` | `false`      | If true then clicking on pagination button will cause transition to appropriate slide.    |
 
 ### Methods
 | Method            | Description              |
@@ -68,10 +70,15 @@ new Vue({
 | setPage(`Number`) | Set current page number. |
 
 ### Events
-| Name               | Parameters | Description                                                                                                                                                  |
+| Name                            | Parameters | Description                                                                                                                                                  |
 |--------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| slide-change-start | `pageNumber`     | Fire in the beginning of animation to other slide (next or previous).                                                                                        |
-| slide-change-end   | `pageNumber`     | Will be fired after animation to other slide (next or previous).                                                                                             |
-| slide-revert-start | `pageNumber`     | Fire in the beginning of animation to revert slide (no change).                                                                                              |
-| slide-revert-end   | `pageNumber`     | Will be fired after animation to revert slide (no change).                                                                                                   |
-| slider-move        | `offset`         | Callback function, will be executed when user touch and move finger over Swiper and move it. Receives swiper instance and 'touchmove' event as an arguments. |
+| <span>slide-change-start</span> | `pageNumber`     | Fire in the beginning of animation to other slide (next or previous).                                                                                        |
+| slide-change-end                | `pageNumber`     | Will be fired after animation to other slide (next or previous).                                                                                             |
+| slide-revert-start              | `pageNumber`     | Fire in the beginning of animation to revert slide (no change).                                                                                              |
+| slide-revert-end                | `pageNumber`     | Will be fired after animation to revert slide (no change).                                                                                                   |
+| slider-move                     | `offset`         | Callback function, will be executed when user touch and move finger over Swiper and move it. Receives swiper instance and 'touchmove' event as an arguments. |
+
+
+<style>
+ span { white-space:nowrap; }
+</style>

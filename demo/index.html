@@ -110,6 +110,7 @@
 <h2>vue-swiper demo</h2>
 <h3>Vertical</h3>
 <swiper id="swiper_vertical"
+        :pagination-visible="true"
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd"
         @slide-revert-start="onSlideRevertStart"
@@ -120,6 +121,7 @@
 </swiper>
 <h3>Horizontal</h3>
 <swiper id="swiper_horizontal"
+        :pagination-visible="true"
         direction="horizontal">
     <div v-for="slideText in slides" track-by="$index">{{slideText}}</div>
 </swiper>

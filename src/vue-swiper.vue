@@ -10,6 +10,13 @@
              @transitionend="_onTransitionEnd">
             <slot></slot>
         </div>
+        <div class="swiper-pagination"
+             v-show="paginationVisible">
+            <span class="swiper-pagination-bullet"
+                  :class="{'active': $index+1===currentPage}"
+                  v-for="slide in slideEls"
+                  @click="setPage($index+1)"></span>
+        </div>
     </div>
 </template>
 <style lang="less" src="./vue-swiper.less"></style>
@@ -31,6 +38,14 @@
             performanceMode: {
                 type: Boolean,
                 default: false
+            },
+            paginationVisible: {
+                type: Boolean,
+                default: false
+            },
+            paginationClickable: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
@@ -44,7 +59,8 @@
                 delta: 0,
                 dragging: false,
                 startPos: null,
-                transitioning: false
+                transitioning: false,
+                slideEls: []
             };
         },
         ready() {
