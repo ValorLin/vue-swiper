@@ -55,13 +55,21 @@
         methods: {
             next() {
                 var page = this.currentPage;
-                if (page < this.slideEls.length) page++;
-                this.setPage(page);
+                if (page < this.slideEls.length) {
+                    page++;
+                    this.setPage(page);
+                } else {
+                    this._revert();
+                }
             },
             prev() {
                 var page = this.currentPage;
-                if (page > 1) page--;
-                this.setPage(page);
+                if (page > 1) {
+                    page--;
+                    this.setPage(page);
+                } else {
+                    this._revert();
+                }
             },
             setPage(page) {
                 var propName, translateName;
@@ -105,8 +113,10 @@
                 if (!this.performanceMode) {
                     if (this.isHorizontal()) {
                         this.translateX = this.startTranslateX + this.delta;
+                        this.$emit('slider-move', this.translateX);
                     } else {
                         this.translateY = this.startTranslateY + this.delta;
+                        this.$emit('slider-move', this.translateY);
                     }
                 }
 
@@ -153,15 +163,19 @@
                 return e.changedTouches ? e.changedTouches[0][key] : e[key];
             },
             _onTransitionStart() {
+                this.transitioning = true;
                 if (this._isPageChanged()) {
-                    this.transitioning = true;
                     this.$emit('slide-change-start', this.currentPage);
+                } else {
+                    this.$emit('slide-revert-start', this.currentPage);
                 }
             },
             _onTransitionEnd() {
+                this.transitioning = false;
                 if (this._isPageChanged()) {
-                    this.transitioning = false;
                     this.$emit('slide-change-end', this.currentPage);
+                } else {
+                    this.$emit('slide-revert-end', this.currentPage);
                 }
             },
             _isPageChanged() {

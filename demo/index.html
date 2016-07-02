@@ -111,7 +111,10 @@
 <h3>Vertical</h3>
 <swiper id="swiper_vertical"
         @slide-change-start="onSlideChangeStart"
-        @slide-change-end="onSlideChangeEnd">
+        @slide-change-end="onSlideChangeEnd"
+        @slide-revert-start="onSlideRevertStart"
+        @slide-revert-end="onSlideRevertEnd"
+        @slider-move="onSliderMove">
     <div class="slide-1">↑<br>o<br>↓</div>
     <div v-for="n in [2,3]">Page {{n}}</div>
 </swiper>
@@ -175,6 +178,15 @@
             },
             onSlideChangeEnd: function (currentPage) {
                 console.log('onSlideChangeEnd', currentPage);
+            },
+            onSlideRevertStart: function (currentPage) {
+                console.log('onSlideRevertStart', currentPage);
+            },
+            onSlideRevertEnd: function (currentPage) {
+                console.log('onSlideRevertEnd', currentPage);
+            },
+            onSliderMove: function (offset) {
+                console.log('onSliderMove', offset);
             },
             prependSlide: function (slideText) {
                 this.slides.unshift(slideText);
