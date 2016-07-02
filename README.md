@@ -43,6 +43,8 @@ new Vue({
 <swiper v-ref:swiper
         direction="horizontal"
         :mousewheel-control="true"
+        :pagination-visible="true"
+        :pagination-clickable="true"
         :performance-mode="false"
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd">
@@ -54,13 +56,14 @@ new Vue({
 
 ## Api
 ### Properties
-| Name                            | Type      | Default      | Description                                                        |
-|---------------------------------|-----------|--------------|--------------------------------------------------------------------|
-| direction                       | `String`  | `"vertical"` | Could be 'horizontal' or 'vertical' (for vertical slider).         |
-| <span>mousewheel-control</span> | `Boolean` | `true`       | Set to true to enable navigation through slides using mouse wheel. |
-| performace-mode                 | `Boolean` | `false`      | Disable advance effect for better performance.                     |
-| pagination-visible              | `Boolean` | `false`      | Toggle (hide/true) pagination container visibility when click on Slider's container |
-| pagination-clickable            | `Boolean` | `false`      | If true then clicking on pagination button will cause transition to appropriate slide.    |
+| Name                 | Type      | Default      | Description                                                        |
+|----------------------|-----------|--------------|--------------------------------------------------------------------|
+| direction            | `String`  | `"vertical"` | Could be 'horizontal' or 'vertical' (for vertical slider).         |
+| mousewheel-control   | `Boolean` | `true`       | Set to true to enable navigation through slides using mouse wheel. |
+| pagination-visible   | `Boolean` | `false`      | Toggle (hide/true) pagination container visibility when click on Slider's container    |
+| pagination-clickable | `Boolean` | `false`      | If true then clicking on pagination button will cause transition to appropriate slide. |
+| performace-mode      | `Boolean` | `false`      | Disable advance effect for better performance.                     |
+| ==================== | ========= | ============ | =================== |
 
 ### Methods
 | Method            | Description              |
@@ -72,13 +75,9 @@ new Vue({
 ### Events
 | Name                            | Parameters | Description                                                                                                                                                  |
 |--------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span>slide-change-start</span> | `pageNumber`     | Fire in the beginning of animation to other slide (next or previous).                                                                                        |
-| slide-change-end                | `pageNumber`     | Will be fired after animation to other slide (next or previous).                                                                                             |
-| slide-revert-start              | `pageNumber`     | Fire in the beginning of animation to revert slide (no change).                                                                                              |
-| slide-revert-end                | `pageNumber`     | Will be fired after animation to revert slide (no change).                                                                                                   |
-| slider-move                     | `offset`         | Callback function, will be executed when user touch and move finger over Swiper and move it. Receives swiper instance and 'touchmove' event as an arguments. |
-
-
-<style>
- span { white-space:nowrap; }
-</style>
+| slide-change-start | `pageNumber`     | Fire in the beginning of animation to other slide (next or previous).                                                                                        |
+| slide-change-end   | `pageNumber`     | Will be fired after animation to other slide (next or previous).                                                                                             |
+| slide-revert-start | `pageNumber`     | Fire in the beginning of animation to revert slide (no change).                                                                                              |
+| slide-revert-end   | `pageNumber`     | Will be fired after animation to revert slide (no change).                                                                                                   |
+| slider-move        | `offset`         | Callback function, will be executed when user touch and move finger over Swiper and move it. Receives swiper instance and 'touchmove' event as an arguments. |
+| ================== | ================ | ============================ |
