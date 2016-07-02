@@ -15,7 +15,7 @@
             <span class="swiper-pagination-bullet"
                   :class="{'active': $index+1===currentPage}"
                   v-for="slide in slideEls"
-                  @click="setPage($index+1)"></span>
+                  @click="paginationClickable && setPage($index+1)"></span>
         </div>
     </div>
 </template>
@@ -45,7 +45,7 @@
             },
             paginationClickable: {
                 type: Boolean,
-                default: true
+                default: false
             }
         },
         data() {
