@@ -46,6 +46,7 @@ new Vue({
         :performance-mode="false"
         :pagination-visible="true"
         :pagination-clickable="true"
+        :loop=“true”
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd">
     <div>Page 1</div>
@@ -63,6 +64,7 @@ new Vue({
 | pagination-visible   | `Boolean` | `false`      | Toggle (hide/true) pagination container visibility when click on Slider's container    |
 | pagination-clickable | `Boolean` | `false`      | If true then clicking on pagination button will cause transition to appropriate slide. |
 | performace-mode      | `Boolean` | `false`      | Disable advance effect for better performance.                     |
+| loop                 | `Boolean` | `false`      | Set to true to enable continuous loop mode                         |
 | ==================== | ========= | ============ | =================== |
 
 ### Methods

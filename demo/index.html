@@ -125,6 +125,13 @@
         direction="horizontal">
     <div v-for="slideText in slides" track-by="$index">{{slideText}}</div>
 </swiper>
+<h3>Loop Mode / Infinite Loop</h3>
+<swiper id="swiper_loop"
+        :loop="true"
+        :pagination-visible="true"
+        direction="horizontal">
+    <div v-for="slideText in slides" track-by="$index">{{slideText}}</div>
+</swiper>
 <h3>Append Child</h3>
 <div id="append_child">
     <button @click="appendSlide('New Page!')">Append child to the horizontal slider</button>
