@@ -158,7 +158,7 @@
                 document.addEventListener('mouseup', this._onTouchEnd, false);
             },
             _onTouchMove(e) {
-                //this.delta = this._getTouchPos(e) - this.startPos;
+                this.delta = this._getTouchPos(e) - this.startPos;
                 if (!this.performanceMode) {
                     this._setTranslate(this.startTranslate + this.delta);
                     this.$emit('slider-move', this._getTranslate());
