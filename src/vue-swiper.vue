@@ -5,7 +5,7 @@
          @mousedown="_onTouchStart"
          @wheel="_onWheel">
         <div class="swiper-wrap"
-             v-ref:swiper-wrap
+             ref="swiper-wrap"
              :style="{
                 'transform' : 'translate3d(' + translateX + 'px,' + translateY + 'px, 0)',
                 'transition-duration': transitionDuration + 'ms'
