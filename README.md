@@ -46,7 +46,7 @@ new Vue({
         :performance-mode="false"
         :pagination-visible="true"
         :pagination-clickable="true"
-        :loop=“true”
+        :loop="true"
         @slide-change-start="onSlideChangeStart"
         @slide-change-end="onSlideChangeEnd">
     <div>Page 1</div>
