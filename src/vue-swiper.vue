@@ -163,6 +163,10 @@
                 }
             },
             _onTouchEnd(e) {
+                if (this.delta === 0) {
+                    return;
+                }
+                
                 this.dragging = false;
                 this.transitionDuration = this.speed;
                 var isQuickAction = new Date().getTime() - this.startTime < 1000;
