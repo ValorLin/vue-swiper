@@ -67,8 +67,10 @@
                 translateY: 0,
                 startTranslate: 0,
                 delta: 0,
+                deltaXY: { },
                 dragging: false,
                 startPos: null,
+                startPosXY: null,
                 transitioning: false,
                 slideEls: [],
                 translateOffset: 0,
@@ -139,7 +141,12 @@
             },
             _onTouchStart(e) {
                 this.startPos = this._getTouchPos(e);
+                this.startPosXY = this.getTouchPosXY(e);
                 this.delta = 0;
+                this.deltaXY = {
+                    pageX: 0,
+                    pageY: 0
+                };
                 this.startTranslate = this._getTranslateOfPage(this.currentPage);
                 this.startTime = new Date().getTime();
                 this.dragging = true;
@@ -152,15 +159,24 @@
             },
             _onTouchMove(e) {
                 this.delta = this._getTouchPos(e) - this.startPos;
-
                 if (!this.performanceMode) {
                     this._setTranslate(this.startTranslate + this.delta);
                     this.$emit('slider-move', this._getTranslate());
                 }
 
-                if (this.isVertical() || this.isHorizontal() && Math.abs(this.delta) > 0) {
+                this.deltaXY = {
+                    pageX: this._getTouchPosXY(e).pageX - this.startPosXY.pageX,
+                    pageY: this._getTouchPosXY(e).pageY - this.startPosXY.pageY
+                };
+                var key = this.isVertical() ? 'pageY' : 'pageX';
+                var _key = this.isVertical() ? 'pageX' : 'pageY';
+                if (Math.abs(this.deltaXY[key]) > Math.abs(this.deltaXY[_key])) {
                     e.preventDefault();
                 }
+
+                //if (this.isVertical() || this.isHorizontal() && Math.abs(this.delta) > 0) {
+                //    e.preventDefault();
+                //}
             },
             _onTouchEnd(e) {
                 if (this.delta === 0) {
@@ -203,6 +219,9 @@
             _getTouchPos(e) {
                 var key = this.isHorizontal() ? 'pageX' : 'pageY';
                 return e.changedTouches ? e.changedTouches[0][key] : e[key];
+            },
+            _getTouchPosXY(e) {
+                return e.changedTouches ? e.changedTouches[0] : e;
             },
             _onTransitionStart() {
                 this.transitioning = true;
